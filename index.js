@@ -20,8 +20,8 @@ g.selectAll("rect")
   })
   .attr("height", function(d) {
     return d.height;
-  })
-  .call(d3.drag().on("drag", dragged));
+  });
+//   .call(d3.drag().on("drag", dragged));
 
 svg.call(
   d3
@@ -39,3 +39,8 @@ function dragged(d) {
     .attr("x", (d.x = d3.event.x))
     .attr("y", (d.y = d3.event.y));
 }
+
+var rects = document.querySelectorAll("rect");
+rects.forEach(function(rect) {
+  rect.addEventListener("mouseenter", console.log);
+});
