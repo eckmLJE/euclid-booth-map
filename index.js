@@ -6,11 +6,11 @@ var svg = d3.select("svg"),
 var g = svg.append("g");
 
 var boothSpecs = {
-  width: 30,
-  height: 40,
-  gutterX: 30,
-  gutterY: 15,
-  rows: 8
+  width: 40,
+  height: 50,
+  gutterX: 35,
+  gutterY: 17,
+  rows: 7
 };
 
 var counters = {
@@ -23,6 +23,9 @@ var boothGroups = g
   .data(boothData)
   .enter()
   .append("g")
+  .attr("id", function(d) {
+    return "booth-" + d.id;
+  })
   .attr("transform", function(d) {
     var transX, transY;
     if (counters.currentRow === boothSpecs.rows) {
@@ -36,9 +39,17 @@ var boothGroups = g
       boothSpecs.gutterY +
       counters.currentRow * (boothSpecs.height + boothSpecs.gutterY);
     counters.currentRow += 1;
-    console.log(counters.currentRow);
     return "translate(" + transX + " " + transY + ")";
   });
+
+boothGroups
+  .append("text")
+  .text(function(d) {
+    return d.id;
+  })
+  .attr("dx", 5)
+  .attr("dy", 45)
+  .attr("font-size", "10px");
 
 boothGroups
   .append("rect")
@@ -47,6 +58,23 @@ boothGroups
   .attr("fill", "none")
   .attr("stroke", "black")
   .attr("stroke-width", "1px");
+
+boothReservations.forEach(function(res) {
+  var selectorString = "g#booth-" + res.boothId;
+  var boothGroup = d3.select(selectorString);
+  boothGroup
+    .select("rect")
+    .attr("fill", "#FF5733")
+    .attr("stroke", "steelblue")
+    .attr("fill-opacity", 0.5);
+  boothGroup
+    .append("text")
+    .attr("font-size", "9px")
+    .attr("font-weight", "bold")
+    .attr("dy", 15)
+    .attr("dx", 5)
+    .text(res.orgName);
+});
 
 svg.call(
   d3

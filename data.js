@@ -94,54 +94,6 @@ var boothData = [
   },
   {
     id: 32
-  },
-  {
-    id: 33
-  },
-  {
-    id: 34
-  },
-  {
-    id: 35
-  },
-  {
-    id: 36
-  },
-  {
-    id: 37
-  },
-  {
-    id: 38
-  },
-  {
-    id: 39
-  },
-  {
-    id: 40
-  },
-  {
-    id: 41
-  },
-  {
-    id: 42
-  },
-  {
-    id: 43
-  },
-  {
-    id: 44
-  },
-  {
-    id: 45
-  },
-  {
-    id: 46
-  },
-  {
-    id: 47
-  },
-  {
-    id: 48
   }
 ];
 
@@ -195,15 +147,5 @@ var boothReservations = [
     id: 10,
     boothId: 31,
     orgName: "WRT"
-  },
-  {
-    id: 11,
-    boothId: 34,
-    orgName: "DI"
-  },
-  {
-    id: 12,
-    boothId: 40,
-    orgName: "TECH"
   }
 ];
