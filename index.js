@@ -5,23 +5,48 @@ var svg = d3.select("svg"),
 
 var g = svg.append("g");
 
-g.selectAll("rect")
-  .data(rects)
+var boothSpecs = {
+  width: 30,
+  height: 40,
+  gutterX: 30,
+  gutterY: 15,
+  rows: 8
+};
+
+var counters = {
+  currentRow: 0,
+  currentColumn: 0
+};
+
+var boothGroups = g
+  .selectAll("g")
+  .data(boothData)
   .enter()
-  .append("rect")
-  .attr("x", function(d) {
-    return d.x;
-  })
-  .attr("y", function(d) {
-    return d.y;
-  })
-  .attr("width", function(d) {
-    return d.width;
-  })
-  .attr("height", function(d) {
-    return d.height;
+  .append("g")
+  .attr("transform", function(d) {
+    var transX, transY;
+    if (counters.currentRow === boothSpecs.rows) {
+      counters.currentColumn += 1;
+      counters.currentRow = 0;
+    }
+    transX =
+      boothSpecs.gutterX +
+      counters.currentColumn * (boothSpecs.width + boothSpecs.gutterX);
+    transY =
+      boothSpecs.gutterY +
+      counters.currentRow * (boothSpecs.height + boothSpecs.gutterY);
+    counters.currentRow += 1;
+    console.log(counters.currentRow);
+    return "translate(" + transX + " " + transY + ")";
   });
-//   .call(d3.drag().on("drag", dragged));
+
+boothGroups
+  .append("rect")
+  .attr("width", boothSpecs.width)
+  .attr("height", boothSpecs.height)
+  .attr("fill", "none")
+  .attr("stroke", "black")
+  .attr("stroke-width", "1px");
 
 svg.call(
   d3
@@ -32,12 +57,6 @@ svg.call(
 
 function zoomed() {
   g.attr("transform", d3.event.transform);
-}
-
-function dragged(d) {
-  d3.select(this)
-    .attr("x", (d.x = d3.event.x))
-    .attr("y", (d.y = d3.event.y));
 }
 
 var rects = document.querySelectorAll("rect");
