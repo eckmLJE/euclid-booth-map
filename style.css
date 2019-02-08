@@ -1,0 +1,7 @@
+.card-container {
+  padding: 50px;
+}
+
+#svg-card-container {
+  flex-grow: 1;
+}

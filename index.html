@@ -24,8 +24,30 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-12">
-          BOOTHS
+        <div
+          class="col-12 d-flex"
+          style="max-height: calc(100vh - 10px); flex-grow: 1"
+        >
+          <div class="card-container" id="booth-list-card-container">
+            <div class="card" style="min-width: 300px">
+              <div class="card-header">Booths</div>
+              <div class="card-body"></div>
+            </div>
+          </div>
+          <div class="card-container" id="svg-card-container">
+            <div class="card">
+              <div class="card-body">
+                <svg
+                  id="venue-svg"
+                  width="100%"
+                  viewBox="0 0 200 200"
+                  style="border: 1px solid #343a40; border-radius: 4px"
+                >
+                  
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
